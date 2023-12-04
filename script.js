@@ -28,82 +28,112 @@ let posts = [
 
 
 //Functions
+load();
+
+
 function showPosts() {
-    initializePostContainer();
-
+    initializePostCascade();
 }
 
 
-function initializePostContainer() {
-    let postContainer = document.getElementById('post-container');
-    postContainer.innerHTML = '';
-    fillPostContainer(postContainer);
+function initializePostCascade() {
+    let postCascade = document.getElementById('post-cascade');
+    postCascade.innerHTML = '';
+    fillPostCascade(postCascade);
 }
 
 
-function fillPostContainer(postContainer) {
+function fillPostCascade(postCascade) {
     for (let i = 0; i < posts.length; i++) {
-        loadPost(postContainer, i);
+        addPostContainer(postCascade, i);
+    }
+    for (let i = 0; i < posts.length; i++) {    // Bitte ueberdenken!
+        writeAddedPosts(i);
     }
 }
 
 
-function loadPostHeader(postContainer, i) {
-    postContainer.innerHTML += `
-        <div id="post-header-${i}" class="post-header">
-            <img id="logo-${i}" src="${logo(i)}" alt="${alt(i)}" class="tagesschau-logo">
-            <h3 id="author-${i}">${author(i)}</h3>
-        </div>
+function addPostContainer(postCascade, i) {    // Bitte HTML-Code ueberdenken!
+    postCascade.innerHTML += `
+        <article id="post-container-${i}" class="post-container">
+            <div id="post-header-${i}" class="post-header">
+                <img id="logo-${i}" src="${getLogo(i)}" alt="${getAlt(i)}" class="tagesschau-logo">
+                <h3 id="author-${i}">${getAuthor(i)}</h3>
+            </div>
+            <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
+            <div id="post-collector-${i}" class="post-collector">
+                <p id="post-text-${i}" class="post-text">
+                    <b id="post-author-${i}" class="post-sender">${getAuthor(i)}</b>
+                    ${getDescription(i)}<br>
+                </p>
+                <form id="post-form" onsubmit="addPost(${i})">
+                    <input id="input-post-${i}" class="input-post" type="text" placeholder="Post hinzufügen" required>
+                </form>
+            </div>
+        </article>
     `;
 }
 
 
-function loadPostImg(postContainer, i) {
-    postContainer.innerHTML += `
-        <img id="post-img-${i}" src="${img(i)}" alt="${alt(i)}" class="post-img">
-    `;
-}
-
-
-function loadPostCollector(postContainer, i) {
-    postContainer.innerHTML += `
-        <div id="post-collector-${i}" class="post-collector">
-            
-            <p id="post-text-${i}" class="post-text">
-                <b id="post-author-${i}" class="post-sender">${author(i)}</b>
-                ${description(i)}
-            </p>
-        </div>
-    `;
-}
-
-
-function loadPost(postContainer, i) {
-    loadPostHeader(postContainer, i);
-    loadPostImg(postContainer, i);
-    loadPostCollector(postContainer,i);
-}
-
-
-function logo(i) {
+function getLogo(i) {
     return posts[i]['logo'];
 }
 
 
-function alt(i) {
+function getAlt(i) {
     return posts[i]['alt'];
 }
 
 
-function author(i) {
+function getAuthor(i) {
     return posts[i]['author'];
 }
 
 
-function img(i) {
+function getImg(i) {
     return posts[i]['img'];
 }
 
-function description(i) {
+
+function getDescription(i) {
     return posts[i]['description'];
 }
+
+
+function addPost(i) {    // Bitte bearbeiten!
+    let post = document.getElementById(`input-post-${i}`).value;
+    posts[i]['posts'].push(post);
+    save();
+    showPosts();
+}
+
+
+function save() {
+    let postsAsText = JSON.stringify(posts);
+    localStorage.setItem('posts', postsAsText);
+}
+
+
+function load() {
+    let postsAsText = localStorage.getItem('posts');
+    if (postsAsText) {
+        posts = JSON.parse(postsAsText);
+    }
+}
+
+
+function getAddedPosts(i) {
+    return posts[i]['posts'];
+}
+
+
+function writeAddedPosts(i) {
+    let addedPosts = getAddedPosts(i);
+    for (let j = 0; j < addedPosts.length; j++) {
+        let postText = document.getElementById(`post-text-${i}`);
+        postText.innerHTML += `
+        <b>Ruan</b>
+        ${addedPosts[j]}<br>
+        `;
+    }
+}    // Bitte post-collector ueberdenken!
