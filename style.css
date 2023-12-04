@@ -42,5 +42,30 @@ header {
     border-radius: 100px;
 }
 
+.post-container {
+    width: 736px;
+    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 
-/* height 24px padding 12px padding total 60px */
+.post-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post-img {
+    width: 480px;
+    height: 480px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.post-collector {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
