@@ -73,6 +73,8 @@ function addPostContainer(postCascade, i) {    // Bitte HTML-Code ueberdenken!
             <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
             <div id="post-button-bar-${i}" class="post-button-bar">
                 <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
+                <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})">-n</button>
+                <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">n - 1</button>
             </div>
             <span id="post-likes-${i}" class="post-likes">${getLikes(i)} Likes</span>
             <p id="comment-collector-${i}" class="comment-collector">
@@ -193,6 +195,33 @@ function setLikeButtons() {
 }
 
 
+function deleteAllComments(i) {
+    let commentCollector = posts[i]['comments'];
+    while (commentCollector.length > 1) {
+        let lastIndex = getIndexOfLastComment(i);
+        commentCollector.splice(lastIndex, 1);
+    }
+    saveAndShowPosts();
+    // disable button + enable function
+}
+
+function deleteLastComment(i) {
+    let lastIndex = getIndexOfLastComment(i);
+    let commentCollector = posts[i]['comments'];
+    if (commentCollector.length > 1) {
+        commentCollector.splice(lastIndex, 1);
+        saveAndShowPosts();
+    } else {
+        // disable button + enable function!!!
+    }
+}
+
+
+function getIndexOfLastComment(i) {
+    return posts[i]['comments'].length - 1;
+}
+
+
 function getAddedComments(i) {
     return posts[i]['comments'];
 }
@@ -210,6 +239,4 @@ function writeAddedComments(i) {
         `;
     }
 }
-
-
 // letzte Funktionen verbessern!!!
