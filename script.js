@@ -57,6 +57,7 @@ function fillPostCascade(postCascade) {
         writeAddedComments(i);
     }
     setLikeButtons();
+    setButtons();
 }
 
 
@@ -73,8 +74,10 @@ function addPostContainer(postCascade, i) {    // Bitte HTML-Code ueberdenken!
             <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
             <div id="post-button-bar-${i}" class="post-button-bar">
                 <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
-                <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})">-n</button>
-                <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">n - 1</button>
+                <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-buttons">
+                    <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})"> k - n</button>
+                    <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">k - 1</button>
+                </div>
             </div>
             <span id="post-likes-${i}" class="post-likes">${getLikes(i)} Likes</span>
             <p id="comment-collector-${i}" class="comment-collector">
@@ -135,6 +138,7 @@ function addComment(i) {
     posts[i]['comments'].push(comment);
     saveAndShowPosts();
 }
+
 
 function saveAndShowPosts() {
     save();
@@ -202,23 +206,58 @@ function deleteAllComments(i) {
         commentCollector.splice(lastIndex, 1);
     }
     saveAndShowPosts();
-    // disable button + enable function
+    addDisplayNone(`post-empty-button-${i}`);
+    addDisplayNone(`post-delete-button-${i}`);
 }
+
+
+function addDisplayNone(id) {
+    let element = document.getElementById(id);
+    element.classList.add('display-none');
+}
+
+
+function removeDisplayNone(id) {
+    let element = document.getElementById(id);
+    element.classList.remove('display-none');
+}
+
+
+function setButtons() {
+    for (let i = 0; i < posts.length; i++) {
+        if (moreThanOneComment(i)) {
+            removeDisplayNone(`post-empty-button-${i}`);
+            removeDisplayNone(`post-delete-button-${i}`);
+        } else {
+            addDisplayNone(`post-empty-button-${i}`);
+            addDisplayNone(`post-delete-button-${i}`)
+        }
+    }
+}
+
+
+function moreThanOneComment(i) {
+    return posts[i]['comments'].length > 1;
+}
+
 
 function deleteLastComment(i) {
     let lastIndex = getIndexOfLastComment(i);
     let commentCollector = posts[i]['comments'];
-    if (commentCollector.length > 1) {
+    if (commentCollector.length > 2) {
         commentCollector.splice(lastIndex, 1);
         saveAndShowPosts();
     } else {
-        // disable button + enable function!!!
+        commentCollector.splice(lastIndex, 1);
+        saveAndShowPosts();
+        addDisplayNone(`post-empty-button-${i}`);
+        addDisplayNone(`post-delete-button-${i}`);
     }
 }
 
 
 function getIndexOfLastComment(i) {
-    return posts[i]['comments'].length - 1;
+    return (posts[i]['comments'].length > 1);
 }
 
 

@@ -108,6 +108,10 @@ section {
     background-color: #2E6B1D;
 }
 
+.locomotive {
+    background-color: #C0A980;
+}
+
 .post-header-text {
     width: calc(470px - 48px);
 }
@@ -172,6 +176,17 @@ h3 {
 
 .post-like-button-used {
     background-color: #F8BCA5;
+}
+
+.delete-and-empty-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.display-none {
+    display: none;
 }
 
 .post-likes {
