@@ -38,11 +38,6 @@ load();
 
 
 function showPosts() {
-    initializePostCascade();
-}
-
-
-function initializePostCascade() {
     let postCascade = document.getElementById('post-cascade');
     postCascade.innerHTML = '';
     fillPostCascade(postCascade);
@@ -61,35 +56,77 @@ function fillPostCascade(postCascade) {
 }
 
 
-function addPostContainer(postCascade, i) {    // Bitte HTML-Code ueberdenken!
+function addPostContainer(postCascade, i) {
     postCascade.innerHTML += `
         <article id="post-container-${i}" class="post-container">
-            <div id="post-header-${i}" class="post-header">
-                <div class="logo-box ${getLogo(i)}"></div>
-                <div class="post-header-text">
-                    <h3 id="author-${i}">${getAuthor(i)}</h3>
-                    <span id="sub-text-${i}" class="sub-text">${getSub(i)}</span>
-                </div>    
-            </div>
-            <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
-            <div id="post-button-bar-${i}" class="post-button-bar">
-                <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
-                <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-buttons">
-                    <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})"> k - n</button>
-                    <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">k - 1</button>
-                </div>
-            </div>
-            <span id="post-likes-${i}" class="post-likes">${getLikes(i)} Likes</span>
-            <p id="comment-collector-${i}" class="comment-collector">
-                <span id="comment-text-${i}" class="comment-text">
-                    <b id="comment-author-${i}">${getAuthor(i)}</b>
-                    ${getFirstComment(i)}
-                </span>
-            </p>
-            <form id="comment-form-${i}" onsubmit="addComment(${i})">
-                <input id="input-comment-${i}" class="input-comment comment-text" type="text" placeholder="Kommentar hinzufügen" required>
-            </form>
+            ${writePostHeader(i)}
+            ${writePostImg(i)}
+            ${writePostButtonBar(i)}
+            ${writePostLikes(i)}
+            ${writePostCollector(i)}
+            ${writeInputComment(i)}
         </article>
+    `;
+}
+
+
+function writePostHeader(i) {
+    return `
+        <div id="post-header-${i}" class="post-header">
+            <div class="logo-box ${getLogo(i)}"></div>
+            <div class="post-header-text">
+                <h3 id="author-${i}">${getAuthor(i)}</h3>
+                <span id="sub-text-${i}" class="sub-text">${getSub(i)}</span>
+            </div>    
+        </div>
+    `;
+}
+
+
+function writePostImg(i) {
+    return `
+        <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
+    `;
+}
+
+
+function writePostButtonBar(i) {
+    return `
+        <div id="post-button-bar-${i}" class="post-button-bar">
+            <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
+            <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-buttons">
+                <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})"> k - n</button>
+                <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">k - 1</button>
+            </div>
+        </div>
+    `;
+}
+
+
+function writePostLikes(i) {
+    return `
+        <span id="post-likes-${i}" class="post-likes">${getLikes(i)} Likes</span>
+    `;
+}
+
+
+function writePostCollector(i) {
+    return `
+        <p id="comment-collector-${i}" class="comment-collector">
+            <span id="comment-text-${i}" class="comment-text">
+                <b id="comment-author-${i}">${getAuthor(i)}</b>
+                ${getFirstComment(i)}
+            </span>
+        </p>
+    `;
+}
+
+
+function writeInputComment(i) {
+    return `
+        <form id="comment-form-${i}" onsubmit="addComment(${i})">
+            <input id="input-comment-${i}" class="input-comment comment-text" type="text" placeholder="Kommentar hinzufügen" required>
+        </form>
     `;
 }
 
@@ -161,14 +198,16 @@ function load() {
 
 
 function likePost(i) {
-    if (posts[i]['like-state'] == false) {
-        addLike(i);
-    } else {
-        removeLike(i);
-    }
+    (likeStateIsFalse(i)) ? addLike(i) : removeLike(i);
 }
 
-function addLike(i) {
+
+function likeStateIsFalse(i) {
+    return posts[i]['like-state'] == false;
+}
+
+
+function addLike(i) {    // Bitte ueberdenken
     let newLikes = ++posts[i]['likes'];
     let likes = document.getElementById(`post-likes-${i}`);
     likes.innerHTML = `${newLikes} Likes`;
@@ -178,7 +217,7 @@ function addLike(i) {
 }
 
 
-function removeLike(i) {
+function removeLike(i) {    // Bitte ueberdenken
     let newLikes = --posts[i]['likes'];
     let likes = document.getElementById(`post-likes-${i}`);
     likes.innerHTML = `${newLikes} Likes`;
@@ -188,7 +227,7 @@ function removeLike(i) {
 }
 
 
-function setLikeButtons() {
+function setLikeButtons() {    // Bitte ueberdenken
     for (let i = 0; i < posts.length; i++) {
         if (posts[i]['like-state'] == true) {
             document.getElementById(`post-like-button-${i}`).classList.add('post-like-button-used');
@@ -199,7 +238,7 @@ function setLikeButtons() {
 }
 
 
-function deleteAllComments(i) {
+function deleteAllComments(i) {    // Bitte ueberdenken
     let commentCollector = posts[i]['comments'];
     while (commentCollector.length > 1) {
         let lastIndex = getIndexOfLastComment(i);
@@ -241,7 +280,7 @@ function moreThanOneComment(i) {
 }
 
 
-function deleteLastComment(i) {
+function deleteLastComment(i) {    // Bitte ueberdenken
     let lastIndex = getIndexOfLastComment(i);
     let commentCollector = posts[i]['comments'];
     if (commentCollector.length > 2) {
@@ -266,7 +305,7 @@ function getAddedComments(i) {
 }
 
 
-function writeAddedComments(i) {
+function writeAddedComments(i) {    // Bitte ueberdenken
     let addedComments = getAddedComments(i);
     for (let j = 1; j < addedComments.length; j++) {
         let commentText = document.getElementById(`comment-collector-${i}`);
@@ -278,4 +317,4 @@ function writeAddedComments(i) {
         `;
     }
 }
-// letzte Funktionen verbessern!!!
+// Angemerkte Funktionen verbessern!!!
