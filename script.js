@@ -1,28 +1,28 @@
 // Variables
 let posts = [
     {
-        'logo': './img/tagesschau-logo',
-        'author': 'Weizen-Bauer',
-        'location': 'Tullnerfeld',
+        'logo': 'wheat',
+        'author': 'weizenBauer',
+        'sub': 'Tullnerfeld',
         'img': './img/wheat.jpg',
         'alt': 'wheat',
-        'description': 'Der Weizen ist das wahre Gold. Das Gold, dass man auch essen kann.'
+        'posts': ['Der Weizen ist das wahre Gold. Das Gold, dass man auch essen kann.']
     },
     {
-        'logo': './img/tagesschau-logo',
-        'author': 'tagesschau',
-        'location': 'Vienna',
+        'logo': 'forest',
+        'author': 'wienerWaldAmt',
+        'sub': 'Wienerwald',
         'img': './img/forest.jpg',
         'alt': 'forest',
-        'description': 'Ein Spaziergang im Wald verleiht dem Geist neue Kraft und Kreativität.'
+        'posts': ['Ein Spaziergang im Wald verleiht dem Geist neue Kraft und Kreativität.']
     },
     {
-        'logo': './img/tagesschau-logo',
-        'author': 'tagesschau',
-        'location': 'Vienna',
-        'img': './img/tagesschau.png',
-        'alt': 'tagesschau-logo',
-        'description': 'Das Londoner Sea Life Aquarium'
+        'logo': 'locomotive',
+        'author': 'eisenbahnMuseum',
+        'sub': 'Österreich',
+        'img': './img/locomotive.jpg',
+        'alt': 'locomotive',
+        'posts': ['Am 12. Dezember 2023 öffnet das Eisenbahnermuseum eine neue Ausstellung zum Thema Eisenbahn & Nostalgie.']
     }
 ]
 
@@ -57,19 +57,22 @@ function addPostContainer(postCascade, i) {    // Bitte HTML-Code ueberdenken!
     postCascade.innerHTML += `
         <article id="post-container-${i}" class="post-container">
             <div id="post-header-${i}" class="post-header">
-                <img id="logo-${i}" src="${getLogo(i)}" alt="${getAlt(i)}" class="tagesschau-logo">
-                <h3 id="author-${i}">${getAuthor(i)}</h3>
+                <div class="logo-box ${getLogo(i)}"></div>
+                <div>
+                    <h3 id="author-${i}">${getAuthor(i)}</h3>
+                    <span id="sub-text-${i}" class="sub-text">${getSub(i)}</span>
+                </div>    
             </div>
             <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
-            <div id="post-collector-${i}" class="post-collector">
-                <p id="post-text-${i}" class="post-text">
-                    <b id="post-author-${i}" class="post-sender">${getAuthor(i)}</b>
-                    ${getDescription(i)}<br>
-                </p>
-                <form id="post-form" onsubmit="addPost(${i})">
-                    <input id="input-post-${i}" class="input-post" type="text" placeholder="Post hinzufügen" required>
-                </form>
-            </div>
+            <p id="post-collector-${i}" class="post-collector">
+                <span id="post-text-${i}" class="post-text">
+                    <b id="post-author-${i}">${getAuthor(i)}</b>
+                    ${getFirstPost(i)}
+                </span>
+            </p>
+            <form id="post-form-${i}" onsubmit="addPost(${i})">
+                <input id="input-post-${i}" class="input-post post-text" type="text" placeholder="Post hinzufügen" required>
+            </form>
         </article>
     `;
 }
@@ -80,13 +83,15 @@ function getLogo(i) {
 }
 
 
-function getAlt(i) {
-    return posts[i]['alt'];
+function getAuthor(i) {
+    return posts[i]['author'];
 }
 
 
-function getAuthor(i) {
-    return posts[i]['author'];
+function getSub(i) {
+    if (posts[i]['sub'].length > 0) {
+        return posts[i]['sub'];
+    }
 }
 
 
@@ -95,14 +100,23 @@ function getImg(i) {
 }
 
 
-function getDescription(i) {
-    return posts[i]['description'];
+function getAlt(i) {
+    return posts[i]['alt'];
 }
 
 
-function addPost(i) {    // Bitte bearbeiten!
+function getFirstPost(i) {
+    return posts[i]['posts'][0];
+}
+
+
+function addPost(i) {
     let post = document.getElementById(`input-post-${i}`).value;
     posts[i]['posts'].push(post);
+    saveAndShowPosts();
+}
+
+function saveAndShowPosts() {
     save();
     showPosts();
 }
@@ -129,11 +143,13 @@ function getAddedPosts(i) {
 
 function writeAddedPosts(i) {
     let addedPosts = getAddedPosts(i);
-    for (let j = 0; j < addedPosts.length; j++) {
-        let postText = document.getElementById(`post-text-${i}`);
+    for (let j = 1; j < addedPosts.length; j++) {
+        let postText = document.getElementById(`post-collector-${i}`);
         postText.innerHTML += `
-        <b>Ruan</b>
-        ${addedPosts[j]}<br>
+        <span class="post-text">
+            <b>ruan</b>
+            ${addedPosts[j]}
+        </span>
         `;
     }
-}    // Bitte post-collector ueberdenken!
+}
