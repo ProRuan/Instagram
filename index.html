@@ -12,20 +12,20 @@
 
 <body onload="showPosts()">
     <div id="dialog-box-background" class="dialog-box-background display-none" onclick="closeDialog()">
-        <form id="dialog-box" class="dialog-box">
+        <div id="dialog-box" class="dialog-box">
             <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
             <div id="dialog-box-button-bar" class="jc-space-between">
-                <input id="yes-button" class="post-button" type="submit" value="Ja" onclick="confirmAction()">
-                <input id="no-button" class="post-button" type="submit" value="Nein" onclick="closeDialog()">
+                <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
+                <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
             </div>
-        </form>
+        </div>
     </div>
 
     <header id="header">
         <span id="ruan-media" class="ruan-media-font">Ruanmedia</span>
         <input type="search" name="search-bar" id="search-bar">
         <nav id="header-icon-bar" class="header-icon-bar">
-            <button id="home" class="nav-button">Home</button>
+            <button id="home" class="nav-button" onclick="addPost()">Home</button>
             <button id="share-post" class="nav-button">Share Post</button>
             <a href="#post-container-2" id="explore" class="nav-button">Explore</a>
             <button id="notification" class="nav-button" onclick="goTo()">Notification</button>

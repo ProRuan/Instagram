@@ -112,6 +112,10 @@ section {
     background-color: #C0A980;
 }
 
+.ruan {
+    background-color: #4872BA;
+}
+
 .post-header-text {
     width: calc(470px - 48px);
 }

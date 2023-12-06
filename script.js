@@ -177,6 +177,27 @@ function addComment(i) {
 }
 
 
+function addPost() {
+    let nextIndex = getNextIndex();
+    posts[nextIndex] = {
+        'logo': 'ruan',
+        'author': 'ruan',
+        'sub': 'Tulln an der Donau',
+        'img': './img/wheat.jpg',
+        'alt': 'wheat',
+        'likes': 0,
+        'like-state': false,
+        'comments': ['macht Weizenbrot.']
+    };
+    saveAndShowPosts();
+}
+
+
+function getNextIndex() {
+    return posts.length;
+}
+
+
 function saveAndShowPosts() {
     save();
     showPosts();
