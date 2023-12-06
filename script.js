@@ -95,8 +95,8 @@ function writePostButtonBar(i) {
         <div id="post-button-bar-${i}" class="post-button-bar">
             <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
             <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-buttons">
-                <button id="post-empty-button-${i}" class="post-button" onclick="deleteAllComments(${i})"> k - n</button>
-                <button id="post-delete-button-${i}" class="post-button" onclick="deleteLastComment(${i})">k - 1</button>
+                <button id="post-empty-button-${i}" class="post-button" onclick="openDialogBox(${i}, 'empty')"> k - n</button>
+                <button id="post-delete-button-${i}" class="post-button" onclick="openDialogBox(${i}, 'delete')">k - 1</button>
             </div>
         </div>
     `;
@@ -317,4 +317,44 @@ function writeAddedComments(i) {    // Bitte ueberdenken
         `;
     }
 }
+
+
+
+
+let deliveredIndex = 0;
+let requestedAction = 'delete';
+
+function openDialogBox(index, action) {
+    removeDisplayNone('dialog-box-background');
+    setTextOfDialogBox(action);
+    deliveredIndex = index;
+    requestedAction = action;
+}
+
+
+function confirmAction() {
+    let yesButton = document.getElementById('yes-button');
+    if (requestedAction == 'empty') {
+        yesButton.onsubmit = deleteAllComments(deliveredIndex);
+    } else if (requestedAction == 'delete') {
+        deleteLastComment(deliveredIndex);
+    }
+}
+
+
+function setTextOfDialogBox(action) {
+    let dialogBox = document.getElementById('dialog-box-text');
+    if (action == 'empty') {
+        dialogBox.innerHTML = 'Wollen Sie wirklich <b>alle</b> Kommentare löschen?';
+    } else if (action == 'delete') {
+        dialogBox.innerHTML = 'Wollen Sie den <b>letzen</b> Kommentar löschen?';
+    }
+}
+
+
+function closeDialog() {
+    addDisplayNone('dialog-box-background');
+}
+
+
 // Angemerkte Funktionen verbessern!!!

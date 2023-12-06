@@ -151,10 +151,14 @@ h3 {
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
-    background-color: #E5E6E9;
+    background-color: rgba(0, 0, 0, 0.1);
     border: unset;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.post-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Doppelter Code!!! */
@@ -164,7 +168,7 @@ h3 {
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
-    background-color: #E5E6E9;
+    background-color: rgba(0, 0, 0, 0.1);
     border: unset;
     border-radius: 10px;
     cursor: pointer;
@@ -226,4 +230,38 @@ input:focus {
 
 .my-contact {
     margin-top: 36px;
+}
+
+.dialog-box-background {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dialog-box {
+    position: absolute;
+    top: calc(50vh - 43px);
+    left: calc(50% - 235px);
+    padding: 16px;
+    width: calc(470px - 32px);
+    line-height: 20px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.jc-space-between {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
 }

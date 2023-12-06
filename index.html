@@ -11,6 +11,16 @@
 </head>
 
 <body onload="showPosts()">
+    <div id="dialog-box-background" class="dialog-box-background display-none" onclick="closeDialog()">
+        <form id="dialog-box" class="dialog-box">
+            <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
+            <div id="dialog-box-button-bar" class="jc-space-between">
+                <input id="yes-button" class="post-button" type="submit" value="Ja" onclick="confirmAction()">
+                <input id="no-button" class="post-button" type="submit" value="Nein" onclick="closeDialog()">
+            </div>
+        </form>
+    </div>
+
     <header id="header">
         <span id="ruan-media" class="ruan-media-font">Ruanmedia</span>
         <input type="search" name="search-bar" id="search-bar">
@@ -30,7 +40,7 @@
 
         <section id="ruan-media">
             <div id="post-cascade" class="post-cascade">
-                
+
             </div>
             <aside class="contacts">
                 <div class="my-contact">
