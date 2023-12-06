@@ -29,6 +29,26 @@ let posts = [
         'likes': 54,
         'like-state': false,
         'comments': ['Am 12. Dezember 2023 öffnet das Eisenbahnermuseum eine neue Ausstellung zum Thema Eisenbahn & Nostalgie.']
+    },
+    {
+        'logo': 'kettlebell',
+        'author': 'kettlebellChallenge',
+        'sub': 'Österreich',
+        'img': './img/kettlebell.jpg',
+        'alt': 'kettlebell',
+        'likes': 612,
+        'like-state': false,
+        'comments': ['Am 07. Dezember 2023 findet die nächste Kettlebell-Challenge statt. Wer eine 20 kg-Kettlebell in auf beiden Seiten mindestens 10-mal hochheben kann, schafft es in die nächste Runde.']
+    },
+    {
+        'logo': 'coding',
+        'author': 'institutOfCodingJakarta',
+        'sub': 'Jakarta - Indonesien',
+        'img': './img/dna.png',
+        'alt': 'dna',
+        'likes': 2023,
+        'like-state': false,
+        'comments': ['Kann KI neues Leben erschaffen? Ein Team internationaler Wissenschaftler wird bei der Veranstaltung Code Of Life in Jakarta im November 2024 versuchen, eine Antwort auf diese Frage zu finden.']
     }
 ]
 
