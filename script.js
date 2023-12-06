@@ -84,9 +84,13 @@ function writePostHeader(i) {
 
 
 function writePostImg(i) {
-    return `
+    if (getAuthor(i) == 'ruan') {
+        return getRuansImg();
+    } else {
+        return `
         <img id="post-img-${i}" src="${getImg(i)}" alt="${getAlt(i)}" class="post-img">
     `;
+    }
 }
 
 
@@ -105,7 +109,7 @@ function writePostButtonBar(i) {
 
 function writePostLikes(i) {
     return `
-        <span id="post-likes-${i}" class="post-likes">${getLikes(i)} Likes</span>
+        <span id="post-likes-${i}" class="post-likes">${getLikes(i)}</span>
     `;
 }
 
@@ -159,8 +163,11 @@ function getAlt(i) {
 
 
 function getLikes(i) {
-    if (posts[i]['likes'] > 0) {
-        return posts[i]['likes'];
+    let like = posts[i]['likes'];
+    if (like == 1) {
+        return like + ' like';
+    } else {
+        return like + ' likes'
     }
 }
 
@@ -177,24 +184,18 @@ function addComment(i) {
 }
 
 
-function addPost() {
-    let nextIndex = getNextIndex();
-    posts[nextIndex] = {
-        'logo': 'ruan',
-        'author': 'ruan',
-        'sub': 'Tulln an der Donau',
-        'img': './img/wheat.jpg',
-        'alt': 'wheat',
-        'likes': 0,
-        'like-state': false,
-        'comments': ['macht Weizenbrot.']
-    };
-    saveAndShowPosts();
-}
-
-
-function getNextIndex() {
-    return posts.length;
+function getRuansImg() {
+    return `
+        <div class="rectangle display-center">
+            <div class="circle blue-4 display-center">
+                <div class="circle blue-3 display-center">
+                    <div class="circle blue-2 display-center">
+                        <div class="circle blue-1 display-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 
@@ -231,7 +232,11 @@ function likeStateIsFalse(i) {
 function addLike(i) {    // Bitte ueberdenken
     let newLikes = ++posts[i]['likes'];
     let likes = document.getElementById(`post-likes-${i}`);
-    likes.innerHTML = `${newLikes} Likes`;
+    if (newLikes != 1) {
+        likes.innerHTML = `${newLikes} Likes`;
+    } else {
+        likes.innerHTML = `${newLikes} Like`;
+    }
     posts[i]['like-state'] = true;
     document.getElementById(`post-like-button-${i}`).classList.add('post-like-button-used');
     save();
@@ -356,19 +361,48 @@ function openDialogBox(index, action) {
 function confirmAction() {
     let yesButton = document.getElementById('yes-button');
     if (requestedAction == 'empty') {
-        yesButton.onsubmit = deleteAllComments(deliveredIndex);
+        deleteAllComments(deliveredIndex);
     } else if (requestedAction == 'delete') {
         deleteLastComment(deliveredIndex);
+    } else if (requestedAction == 'post') {
+        addPost();
     }
+    closeDialog();
 }
 
 
 function setTextOfDialogBox(action) {
-    let dialogBox = document.getElementById('dialog-box-text');
+    let dialogBox = document.getElementById('dialog-box');
     if (action == 'empty') {
-        dialogBox.innerHTML = 'Wollen Sie wirklich <b>alle</b> Kommentare löschen?';
+        dialogBox.innerHTML = `
+            <span id="dialog-box-text">
+                Wollen Sie wirklich <b>alle</b> Kommentare löschen?
+            </span>
+            <div id="dialog-box-button-bar" class="jc-space-between">
+                <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
+                <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
+            </div>
+        `;
     } else if (action == 'delete') {
-        dialogBox.innerHTML = 'Wollen Sie den <b>letzen</b> Kommentar löschen?';
+        dialogBox.innerHTML = `
+            <span id="dialog-box-text">
+                Wollen Sie den <b>letzen</b> Kommentar löschen?
+            </span>
+            <div id="dialog-box-button-bar" class="jc-space-between">
+                <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
+                <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
+            </div>
+        `;
+    } else if (action == 'post') {
+        dialogBox.innerHTML = `
+            <form id="post-form" class="post-form" onsubmit="confirmAction()">
+                <input id="input-post" class="input-post" name="input-post" type="text" placeholder="Post hinzufügen" required>
+                <div id="dialog-box-button-bar" class="jc-space-between">
+                    <button id="accept-button" class="post-button" onsubmit="confirmAction()">Posten
+                    <button id="reject-button" class="post-button" onclick="closeDialog()">Schließen
+                </div>
+            </form>
+        `;
     }
 }
 
@@ -378,4 +412,24 @@ function closeDialog() {
 }
 
 
+function getNextIndex() {
+    return posts.length;
+}
+
+
+function addPost() {
+    let input = document.getElementById('input-post').value;
+    posts[deliveredIndex] = {
+        'logo': 'ruan',
+        'author': 'ruan',
+        'sub': 'Tulln an der Donau',
+        'img': './img/wheat.jpg',
+        'alt': 'wheat',
+        'likes': 0,
+        'like-state': false,
+        'comments': [input]
+    };
+    saveAndShowPosts();
+    location.href = `#post-container-${deliveredIndex}`;
+}
 // Angemerkte Funktionen verbessern!!!

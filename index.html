@@ -11,12 +11,12 @@
 </head>
 
 <body onload="showPosts()">
-    <div id="dialog-box-background" class="dialog-box-background display-none" onclick="closeDialog()">
+    <div id="dialog-box-background" class="dialog-box-background display-none">
         <div id="dialog-box" class="dialog-box">
             <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
             <div id="dialog-box-button-bar" class="jc-space-between">
                 <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
-                <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
+                <button id="no-button" class="post-button" onclick="closeDialog('dialog-box-background')">Nein</button>
             </div>
         </div>
     </div>
@@ -25,6 +25,7 @@
         <span id="ruan-media" class="ruan-media-font">Ruanmedia</span>
         <input type="search" name="search-bar" id="search-bar">
         <nav id="header-icon-bar" class="header-icon-bar">
+            <button id="new-post" class="nav-button" onclick="openDialogBox(getNextIndex(), 'post')">+</button>
             <button id="home" class="nav-button" onclick="addPost()">Home</button>
             <button id="share-post" class="nav-button">Share Post</button>
             <a href="#post-container-2" id="explore" class="nav-button">Explore</a>
@@ -43,11 +44,37 @@
 
             </div>
             <aside class="contacts">
-                <div class="my-contact">
-                    Mein Profil
+                <div class="my-contact contact-container">
+                    <div class="logo-box ruan"></div>
+                    <div class="contact-text">
+                        <h3 id="author">ruan</h3>
+                        <span id="sub-text" class="sub-text">Tulln an der Donau</span>
+                    </div>
                 </div>
-                <div class="other-contacts">
-                    Andere Profile
+                <div class="recommended-contacts">Vorgeschlagene Kontakte</div>
+                <div class="other-contacts contact-container">
+                    <div class="logo-box wheat"></div>
+                    <div class="other-contact-text">
+                        <h3 id="author">weizenBauer</h3>
+                        <span id="sub-text" class="sub-text">Tullnerfeld</span>
+                    </div>
+                    <span class="follow">Folgen</span>
+                </div>
+                <div class="other-contacts contact-container">
+                    <div class="logo-box forest"></div>
+                    <div class="other-contact-text">
+                        <h3 id="author">wienerWaldAmt</h3>
+                        <span id="sub-text" class="sub-text">Wienerwald</span>
+                    </div>
+                    <span class="follow">Folgen</span>
+                </div>
+                <div class="other-contacts contact-container">
+                    <div class="logo-box locomotive"></div>
+                    <div class="other-contact-text">
+                        <h3 id="author">eisenbahnMuseum</h3>
+                        <span id="sub-text" class="sub-text">Österreich</span>
+                    </div>
+                    <span class="follow">Folgen</span>
                 </div>
             </aside>
         </section>
