@@ -1,4 +1,4 @@
-// Variables
+// Variables Of Rendering
 let posts = [
     {
         'logo': 'wheat',    // logo of author
@@ -58,7 +58,7 @@ let posts = [
 ];    // contains the posts
 
 
-//Functions
+//Functions Of Rendering
 load();    // loads the JSON array 'posts' from the local storage
 
 
@@ -74,10 +74,10 @@ function fillPostCascade(postCascade) {    // fills the postCascade
         addPostContainer(postCascade, i);
         writeAddedComments(i);
         setLikeButton(i);
+        setEmptyAndDeleteButton(i);
     }
-    
+
     // Bitte bearbeiten!!!!!!!!!!!!!!!!!!!!
-    setButtons();
     showRecommendedContacs();
     setFollowButton();
     showNumberOfMyPosts();
@@ -227,6 +227,25 @@ function addComment(i) {    // adds a new comment to post i
 }
 
 
+function writeAddedComments(i) {    // provides the HTML code of the added comments
+    let addedComments = getAddedComments(i);    // contains the comments of post i
+    writeOneAddedComment(addedComments, i);
+}
+
+
+function writeOneAddedComment(addedComments, i) {    // provides the HTML code of the added comment j
+    for (let j = 1; j < addedComments.length; j++) {    // as long as there are comments ...
+        let textOfComments = document.getElementById(`comment-collector-${i}`);    // contains the element 'comment-collector-i'
+        textOfComments.innerHTML += `
+        <span id="comment-text-${j}" class="comment-text">
+            <b>ruan</b>
+            ${addedComments[j]}
+        </span>
+        `;    // writes the added commend j
+    }
+}
+
+
 function saveAndShowPosts() {    // saves and shows posts
     save();
     showPosts();
@@ -243,89 +262,5 @@ function load() {    // loads the posts from the local storage
     let postsAsText = localStorage.getItem('posts');    // loads 'posts' from the local storage
     if (postsAsText) {
         posts = JSON.parse(postsAsText);    // parses the String to the JSON array 'posts'
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-// other functions
-
-function likePost(i) {    // likes or unlikes the post i
-    (likeStateIsFalse(i)) ? addLike(i) : removeLike(i);
-}
-
-
-function likeStateIsFalse(i) {    // returns 'true', if the state of like is 'false'
-    return posts[i]['like-state'] == false;
-}
-
-
-function addLike(i) {    // adds a like and the related settings
-    let newLikes = ++posts[i]['likes'];
-    let likes = document.getElementById(`post-likes-${i}`);
-    writeLikeOrLikes(newLikes, likes);
-    setStateOfLike(i);
-    addClassToId(`post-like-button-${i}`, 'post-like-button-activated');
-    save();
-}
-
-
-function writeLikeOrLikes(newLikes, likes) {    // writes '1 like' or 'x likes'
-    if (newLikes == 1) {    // if there is only 1 like ...
-        likes.innerHTML = `${newLikes} Like`;    // write '1 like'
-    } else {    // else ...
-        likes.innerHTML = `${newLikes} Likes`;    // write 'x likes'
-    }
-}
-
-
-function setStateOfLike(i) {    // sets the appropriate state of like of post i
-    let stateOfLike = getStateOfLike(i);    // contains the state of like of post i
-    if (stateOfLike == false) {    // if the state of like is 'false' ...
-        posts[i]['like-state'] = true;    // set 'like-state' = 'true'
-    } else {    // else ...
-        posts[i]['like-state'] = false;    // set 'like-state' = 'false'
-    }
-}
-
-
-function getStateOfLike(i) {    // provides the state of like of post i
-    return posts[i]['like-state'];
-}
-
-
-function addClassToId(id, nameOfClass) {    // adds a class to an element
-    document.getElementById(id).classList.add(nameOfClass);
-}
-
-
-function removeLike(i) {    // removes the like and the related settings
-    let newLikes = --posts[i]['likes'];
-    let likes = document.getElementById(`post-likes-${i}`);
-    writeLikeOrLikes(newLikes, likes);
-    setStateOfLike(i);
-    removeClassFromId(`post-like-button-${i}`, 'post-like-button-activated');
-    save();
-}
-
-
-function removeClassFromId(id, nameOfClass) {    // removes a class from an element
-    document.getElementById(id).classList.remove(nameOfClass);
-}
-
-
-function setLikeButton(i) {    // sets the 'post-like-button-i' respectively to the state of like of post i
-    if (getStateOfLike(i) == true) {
-        addClassToId(`post-like-button-${i}`, 'post-like-button-activated');
-    } else {
-        removeClassFromId(`post-like-button-${i}`, 'post-like-button-activated');
     }
 }
