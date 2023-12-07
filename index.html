@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <header id="header">
+    <header id="header" class="display-none">
         <span id="ruan-media" class="ruan-media-font">Ruanmedia</span>
         <input type="search" name="search-bar" id="search-bar">
         <nav id="header-icon-bar" class="header-icon-bar">
@@ -36,10 +36,15 @@
 
     <main id="main">
         <nav id="side-menu" class="side-menu">
-            Side Menus
+            <span id="ruan-media-menu" class="ruan-media-menu">Ruanmedia</span>
+            <div id="menu-link-group" class="menu-link-group">
+                <a id="home" class="menu-link menu-link-home">Home</a>
+                <a id="search" class="menu-link">Suche</a>
+                <a id="new-post" class="menu-link" onclick="openDialogBox(getNextIndex(), 'post')">Neuer Post</a>
+            </div>
         </nav>
 
-        <section id="ruan-media">
+        <section id="ruan-media" class="ruan-media">
             <div id="post-cascade" class="post-cascade">
 
             </div>
@@ -52,45 +57,8 @@
                     </div>
                 </div>
                 <div class="recommended-contacts">Vorgeschlagene Kontakte</div>
-                <div class="other-contacts contact-container">
-                    <div class="logo-box wheat"></div>
-                    <div class="other-contact-text">
-                        <h3 id="author">weizenBauer</h3>
-                        <span id="sub-text" class="sub-text">Tullnerfeld</span>
-                    </div>
-                    <span class="follow">Folgen</span>
-                </div>
-                <div class="other-contacts contact-container">
-                    <div class="logo-box forest"></div>
-                    <div class="other-contact-text">
-                        <h3 id="author">wienerWaldAmt</h3>
-                        <span id="sub-text" class="sub-text">Wienerwald</span>
-                    </div>
-                    <span class="follow">Folgen</span>
-                </div>
-                <div class="other-contacts contact-container">
-                    <div class="logo-box locomotive"></div>
-                    <div class="other-contact-text">
-                        <h3 id="author">eisenbahnMuseum</h3>
-                        <span id="sub-text" class="sub-text">Österreich</span>
-                    </div>
-                    <span class="follow">Folgen</span>
-                </div>
-                <div class="other-contacts contact-container">
-                    <div class="logo-box kettlebell"></div>
-                    <div class="other-contact-text">
-                        <h3 id="author">kettlebellChallenge</h3>
-                        <span id="sub-text" class="sub-text">Österreich</span>
-                    </div>
-                    <span class="follow">Folgen</span>
-                </div>
-                <div class="other-contacts contact-container">
-                    <div class="logo-box coding"></div>
-                    <div class="other-contact-text">
-                        <h3 id="author">institutOfCodingJakarta</h3>
-                        <span id="sub-text" class="sub-text">Jakarta - Indonesien</span>
-                    </div>
-                    <span class="follow">Folgen</span>
+                <div id="recommended-contacts-container">
+
                 </div>
             </aside>
         </section>

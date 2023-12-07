@@ -8,7 +8,8 @@ let posts = [
         'alt': 'wheat',
         'likes': 239,
         'like-state': false,
-        'comments': ['Der Weizen ist das wahre Gold. Das Gold, dass man auch essen kann.']
+        'comments': ['Der Weizen ist das wahre Gold. Das Gold, dass man auch essen kann.'],
+        'following': false
     },
     {
         'logo': 'forest',
@@ -18,7 +19,8 @@ let posts = [
         'alt': 'forest',
         'likes': 126,
         'like-state': false,
-        'comments': ['Ein Spaziergang im Wald verleiht dem Geist neue Kraft und Kreativität.']
+        'comments': ['Ein Spaziergang im Wald verleiht dem Geist neue Kraft und Kreativität.'],
+        'following': false
     },
     {
         'logo': 'locomotive',
@@ -28,7 +30,8 @@ let posts = [
         'alt': 'locomotive',
         'likes': 54,
         'like-state': false,
-        'comments': ['Am 12. Dezember 2023 öffnet das Eisenbahnermuseum eine neue Ausstellung zum Thema Eisenbahn & Nostalgie.']
+        'comments': ['Am 12. Dezember 2023 öffnet das Eisenbahnermuseum eine neue Ausstellung zum Thema Eisenbahn & Nostalgie.'],
+        'following': false
     },
     {
         'logo': 'kettlebell',
@@ -38,7 +41,8 @@ let posts = [
         'alt': 'kettlebell',
         'likes': 612,
         'like-state': false,
-        'comments': ['Am 07. Dezember 2023 findet die nächste Kettlebell-Challenge statt. Wer eine 20 kg-Kettlebell in auf beiden Seiten mindestens 10-mal hochheben kann, schafft es in die nächste Runde.']
+        'comments': ['Am 07. Dezember 2023 findet die nächste Kettlebell-Challenge statt. Wer eine 20 kg-Kettlebell in auf beiden Seiten mindestens 10-mal hochheben kann, schafft es in die nächste Runde.'],
+        'following': false
     },
     {
         'logo': 'coding',
@@ -48,7 +52,8 @@ let posts = [
         'alt': 'dna',
         'likes': 2023,
         'like-state': false,
-        'comments': ['Kann KI neues Leben erschaffen? Ein Team internationaler Wissenschaftler wird bei der Veranstaltung Code Of Life in Jakarta im November 2024 versuchen, eine Antwort auf diese Frage zu finden.']
+        'comments': ['Kann KI neues Leben erschaffen? Ein Team internationaler Wissenschaftler wird bei der Veranstaltung Code Of Life in Jakarta im November 2024 versuchen, eine Antwort auf diese Frage zu finden.'],
+        'following': false
     }
 ]
 
@@ -73,6 +78,8 @@ function fillPostCascade(postCascade) {
     }
     setLikeButtons();
     setButtons();
+    showRecommendedContacs();
+    setFollowButton();
 }
 
 
@@ -453,3 +460,49 @@ function addPost() {
     location.href = `#post-container-${deliveredIndex}`;
 }
 // Angemerkte Funktionen verbessern!!!
+
+
+function showRecommendedContacs() {
+    let recommendedContacts = document.getElementById('recommended-contacts-container');
+    recommendedContacts.innerHTML = '';
+    fillRecommendedContacts(recommendedContacts);
+}
+
+
+function fillRecommendedContacts(recommendedContacts) {
+    for (let i = 0; i < 5; i++) {
+        recommendedContacts.innerHTML += `
+            <div class="other-contacts contact-container">
+                <div class="logo-box ${getLogo(i)}"></div>
+                <div class="other-contact-text">
+                    <h3 id="author">${getAuthor(i)}</h3>
+                    <span id="sub-text" class="sub-text">${getSub(i)}</span>
+                </div>
+                <button id="follow-button-${i}" class="follow-button" onclick="follow(${i})">Folgen</button>
+            </div>
+        `;
+    }
+}
+
+
+function follow(i) {
+    if (posts[i]['following'] == false) {
+        posts[i]['following'] = true;
+        document.getElementById(`follow-button-${i}`).classList.add('follow-button-active');
+    } else {
+        posts[i]['following'] = false;
+        document.getElementById(`follow-button-${i}`).classList.remove('follow-button-active');
+    }
+    saveAndShowPosts();
+}
+
+
+function setFollowButton() {
+    for (let i = 0; i < 5; i++) {
+        if (posts[i]['following'] == true) {
+            document.getElementById(`follow-button-${i}`).classList.add('follow-button-active');
+        } else {
+            document.getElementById(`follow-button-${i}`).classList.remove('follow-button-active');
+        }
+    }
+}
