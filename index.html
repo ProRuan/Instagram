@@ -11,8 +11,8 @@
 </head>
 
 <body onload="showPosts()">
-    <div id="dialog-box-background" class="dialog-box-background display-none">
-        <div id="dialog-box" class="dialog-box">
+    <div id="dialog-box-background" class="dialog-box-background display-none" onclick="closeDialogIf(id)">
+        <div id="dialog-box" class="dialog-box" onclick="closeDialogIf(id)">
             <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
             <div id="dialog-box-button-bar" class="jc-space-between">
                 <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <header id="header" class="display-none">
+    <header id="header" class="header">
         <span id="ruan-media" class="ruan-media-font">Ruanmedia</span>
         <input type="search" name="search-bar" id="search-bar">
         <nav id="header-icon-bar" class="header-icon-bar">
@@ -39,7 +39,6 @@
             <span id="ruan-media-menu" class="ruan-media-menu">Ruanmedia</span>
             <div id="menu-link-group" class="menu-link-group">
                 <a id="home" class="menu-link menu-link-home">Home</a>
-                <a id="search" class="menu-link">Suche</a>
                 <a id="new-post" class="menu-link" onclick="openDialogBox(getNextIndex(), 'post')">Neuer Post</a>
             </div>
         </nav>

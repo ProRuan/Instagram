@@ -7,10 +7,18 @@ body {
     background-color: #FBFAFB;
 }
 
-header {
+.header {
     padding: 6px 16px;
     background-color: white;
-    display: flex;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer {
+    padding: 6px 16px;
+    background-color: white;
+    display: none;
     justify-content: space-between;
     align-items: center;
 }
@@ -437,4 +445,28 @@ input:focus {
 
 .menu-link-home {
     font-weight: 700;
+}
+
+@media (max-width: 1280px) {
+    .contacts {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .header {
+        display: flex;
+    }
+
+    .side-menu {
+        display: none;
+    }
+
+    main {
+        justify-content: center;
+    }
+
+    .ruan-media {
+        position: unset;
+    }
 }

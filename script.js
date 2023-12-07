@@ -506,3 +506,31 @@ function setFollowButton() {
         }
     }
 }
+
+
+let levelCounter = 0;
+
+function closeDialogIf(id) {
+    setLevelCounterIf(id);
+    decreaseLevelCounter();
+    levelCounterLessThanOne();
+}
+
+
+function setLevelCounterIf(id) {
+    if (id == 'dialog-box') {
+        levelCounter = 3;
+    }
+}
+
+
+function decreaseLevelCounter() {
+    return (levelCounter > 0) ? levelCounter-- : levelCounter = 0;
+}
+
+
+function levelCounterLessThanOne() {
+    if (levelCounter < 1) {
+        closeDialog();
+    }
+}
