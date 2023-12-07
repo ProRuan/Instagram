@@ -80,6 +80,7 @@ function fillPostCascade(postCascade) {
     setButtons();
     showRecommendedContacs();
     setFollowButton();
+    showNumberOfMyPosts();
 }
 
 
@@ -533,4 +534,27 @@ function levelCounterLessThanOne() {
     if (levelCounter < 1) {
         closeDialog();
     }
+}
+
+
+function showNumberOfMyPosts() {
+    let counter = document.getElementById('counter-of-my-posts');
+    let sum = countMyPosts();
+    counter.innerHTML = `<b>Meine Posts: ${sum}</b>`;
+}
+
+
+function countMyPosts() {
+    let sum = 0;
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i]['author'] == 'ruan') {
+            sum++;
+        }
+    }
+    return sum;
+}
+
+
+function goToTop() {
+    location.href = '#body';
 }

@@ -8,18 +8,28 @@ body {
 }
 
 .header {
-    padding: 6px 16px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 10px 16px;
     background-color: white;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.1);
     display: none;
     justify-content: space-between;
     align-items: center;
 }
 
 .footer {
-    padding: 6px 16px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px 16px;
     background-color: white;
+    box-shadow: 0 -1px rgba(0, 0, 0, 0.1);
     display: none;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -256,6 +266,18 @@ h3 {
     gap: 8px;
 }
 
+.footer-button {
+    padding: 4px 12px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: unset;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .display-none {
     display: none;
 }
@@ -409,6 +431,8 @@ input:focus {
     padding: 8px 12px 20px 12px;
     width: 220px;
     height: calc(100vh - 28px);
+    background-color: white;
+    box-shadow: 1px 0 rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -447,6 +471,11 @@ input:focus {
     font-weight: 700;
 }
 
+.counter-of-my-posts {
+    font-size: 16px;
+    line-height: 20px;
+}
+
 @media (max-width: 1280px) {
     .contacts {
         display: none;
@@ -469,4 +498,9 @@ input:focus {
     .ruan-media {
         position: unset;
     }
+
+    .footer {
+        display: flex;
+    }
 }
+
