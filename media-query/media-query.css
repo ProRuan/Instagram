@@ -26,3 +26,69 @@
         margin-bottom: 48px;
     }
 }
+
+@media (max-width: 661px) {
+    .post-cascade {
+        width: calc(100% - 32px);
+        max-width: 630px;
+    }
+
+    .post-container {
+        width: calc(100% - 32px);
+        max-width: 470px;
+    }
+
+    .post-header-text {
+        width: calc(100% - 48px);
+    }
+    
+    .post-img {
+        width: 100%;
+    }
+    
+    .rectangle {
+        width: 100%;
+        min-width: 256px;
+    }
+    
+    .dialog-box {
+        width: calc(320px - 32px);
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        left: calc(50% - 160px);
+    }
+
+    .dialog-box .post-button {
+        font-size: 12px;
+        line-height: 16px;
+    }
+    
+    .post-form {
+        width: 100%;
+    }
+
+    .input-post {
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+@media (max-width: 400px) {
+    .post-container {
+        width: 100%;
+    }
+
+    .counter-of-my-posts {
+        display: none;
+    }
+
+    .dialog-box {
+        width: calc(240px - 32px);
+        left: calc(50% - 120px);
+    }
+
+    .jc-space-between {
+        gap: 48px;
+    }
+}

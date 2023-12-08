@@ -5,6 +5,7 @@ body {
     font-weight: 400;
     line-height: 16px;
     background-color: #FBFAFB;
+    overflow-x: hidden;
 }
 
 .ruan-media {
@@ -42,6 +43,7 @@ body {
 
 .post-header {
     padding-bottom: 12px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -218,9 +220,13 @@ h3 {
     line-height: 18px;
 }
 
+.form-comment {
+    width: 100%;
+}
+
 .input-comment {
     padding: 0;
-    width: calc(470px - 8px);
+    width: 100%;
     border: unset;
 }
 
@@ -330,9 +336,10 @@ input:focus {
 }
 
 .input-post {
+    padding: 0;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 20px;
     border: unset;
 }

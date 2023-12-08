@@ -154,7 +154,7 @@ function writePostCollector(i) {    // provides the HTML code for the 'post-coll
 
 function writeInputComment(i) {    // provides the HTML code for the 'input-comment-i'
     return `
-        <form id="comment-form-${i}" onsubmit="addComment(${i})">
+        <form id="comment-form-${i}" class="form-comment" onsubmit="addComment(${i})">
             <input id="input-comment-${i}" class="input-comment comment-text" type="text" placeholder="Kommentar hinzufügen" required>
         </form>
     `;
