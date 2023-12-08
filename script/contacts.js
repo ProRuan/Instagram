@@ -11,11 +11,11 @@ function fillRecommendedContacts(recommendedContacts) {    // writes the HTML co
         recommendedContacts.innerHTML += `
             <div class="other-contacts contact-container">
                 <div class="logo-box ${getLogo(i)}"></div>
-                <div class="other-contact-text">
+                <div class="other-contacts-text">
                     <h3 id="author">${getAuthor(i)}</h3>
                     <span id="sub-text" class="sub-text">${getSub(i)}</span>
                 </div>
-                <button id="follow-button-${i}" class="follow-button" onclick="follow(${i})">Folgen</button>
+                <button id="follow-button-${i}" class="post-button follow-button" onclick="follow(${i})">Folgen</button>
             </div>
         `;    // writes the recommended contact i
     }

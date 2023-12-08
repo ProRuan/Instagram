@@ -124,10 +124,10 @@ function writePostImg(i) {    // provides the HTML code for the 'post-img-i'
 function writePostButtonBar(i) {    // provides the HTML code for the 'post-button-bar-i'
     return `
         <div id="post-button-bar-${i}" class="post-button-bar">
-            <button id="post-like-button-${i}" class="post-like-button" onclick="likePost(${i})">Like</button>
-            <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-buttons">
-                <button id="post-empty-button-${i}" class="post-button" onclick="openDialogBox(${i}, 'empty')"> k - n</button>
-                <button id="post-delete-button-${i}" class="post-button" onclick="openDialogBox(${i}, 'delete')">k - 1</button>
+            <button id="post-like-button-${i}" class="post-button post-like-button" onclick="likePost(${i})">Like</button>
+            <div id="delete-and-empty-buttons-${i}" class="delete-and-empty-button">
+                <button id="post-empty-button-${i}" class="post-button post-delete-button" onclick="openDialogBox(${i}, 'empty')"> k - n</button>
+                <button id="post-delete-button-${i}" class="post-button post-delete-button" onclick="openDialogBox(${i}, 'delete')">k - 1</button>
             </div>
         </div>
     `;

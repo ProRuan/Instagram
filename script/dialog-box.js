@@ -15,17 +15,19 @@ function openDialogBox(index, action) {    // opens the 'dialog-box'
 
 function setUpDialogBox(action) {    // sets the text of the dialog box
     let dialogBox = document.getElementById('dialog-box');    // contains the 'dialog-box'
-    setTextOfAction(action, dialogBox);
+    setContentOfAction(action, dialogBox);
 }
 
 
-function setTextOfAction(action, dialogBox) {    // sets the text of the dialog box depending on the requested action
+function setContentOfAction(action, dialogBox) {    // sets the text of the dialog box depending on the requested action
     if (action == 'empty') {
         setTextForEmtpyingComments(dialogBox);
+        setButtonsForDeletingComments(dialogBox);
     } else if (action == 'delete') {
         setTextForDeletingAComment(dialogBox);
+        setButtonsForDeletingComments(dialogBox);
     } else if (action == 'post') {
-        setTextForAddingAPost(dialogBox);
+        setContentForAddingAPost(dialogBox);
     }
 }
 
@@ -35,9 +37,15 @@ function setTextForEmtpyingComments(dialogBox) {    // provides the text for del
         <span id="dialog-box-text">
             Wollen Sie wirklich <b>alle</b> Kommentare löschen?
         </span>
+    `;
+}
+
+
+function setButtonsForDeletingComments(dialogBox) {
+    return dialogBox.innerHTML += `
         <div id="dialog-box-button-bar" class="jc-space-between">
-            <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
-            <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
+            <button id="accept-button" class="post-button post-delete-button" onclick="confirmAction()">Ja</button>
+            <button id="reject-button" class="post-button post-delete-button" onclick="closeDialog()">Nein</button>
         </div>
     `;
 }
@@ -48,21 +56,17 @@ function setTextForDeletingAComment(dialogBox) {    // provides the text for del
         <span id="dialog-box-text">
             Wollen Sie den <b>letzen</b> Kommentar löschen?
         </span>
-        <div id="dialog-box-button-bar" class="jc-space-between">
-            <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
-            <button id="no-button" class="post-button" onclick="closeDialog()">Nein</button>
-        </div>
     `;
 }
 
 
-function setTextForAddingAPost(dialogBox) {    // provides the text for adding a post
+function setContentForAddingAPost(dialogBox) {    // provides the text for adding a post
     return dialogBox.innerHTML = `
         <form id="post-form" class="post-form" onsubmit="confirmAction()">
             <input id="input-post" class="input-post" name="input-post" type="text" placeholder="Post hinzufügen" required>
             <div id="dialog-box-button-bar" class="jc-space-between">
-                <button id="accept-button" class="post-button" onsubmit="confirmAction()">Posten
-                <button id="reject-button" class="post-button" onclick="closeDialog()">Schließen
+                <button id="accept-button" class="post-button post-delete-button" onsubmit="confirmAction()">Posten
+                <button id="reject-button" class="post-button post-delete-button" onclick="closeDialog()">Schließen
             </div>
         </form>
     `;

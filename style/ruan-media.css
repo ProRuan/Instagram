@@ -31,7 +31,7 @@ body {
 
 .post-container {
     padding-top: 16px;
-    border-bottom: 1px solid lightgray;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.15);
     padding-bottom: 16px;
     width: 470px;
     display: flex;
@@ -141,10 +141,6 @@ h3 {
     align-items: center;
 }
 
-
-
-
-/* margin 4px 0, height 40px */
 .post-button-bar {
     margin: 4px 0;
     padding: 8px 0;
@@ -155,42 +151,188 @@ h3 {
 }
 
 .post-button {
-    padding: 4px 12px;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 18px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border: unset;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.post-button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.post-button:focus {
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.post-like-button {
     padding: 3px 12px;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 600;
     line-height: 18px;
-    background-color: rgba(0, 0, 0, 0.1);
     border: unset;
     border-radius: 10px;
     cursor: pointer;
+    outline: none;
+}
+
+.post-delete-button {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.post-delete-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.post-delete-button:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.post-like-button {
+    background-color: rgba(255, 0, 0, 0.1);
 }
 
 .post-like-button:hover {
-    background-color: #F8BCA5;
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.post-like-button:focus {
+    background-color: rgba(255, 0, 0, 0.2);
 }
 
 .post-like-button-activated {
-    background-color: #F8BCA5;
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.delete-and-empty-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-likes {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.comment-collector {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.comment-text {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.input-comment {
+    padding: 0;
+    width: calc(470px - 8px);
+    border: unset;
+}
+
+input:focus {
+    outline: none;
+}
+
+.contacts {
+    padding-left: 64px;
+    width: 319px;
+}
+
+.my-contact {
+    margin-top: 36px;
+    padding: 0 16px;
+    width: calc(100% - 32px);
+}
+
+.contact-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-text {
+    width: calc(287px - 48px);
+}
+
+.recommended-contacts {
+    padding: 24px 16px 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    color: rgb(115, 115, 115);
+}
+
+.other-contacts {
+    padding: 4px 16px;
+}
+
+.other-contacts-text {
+    width: calc(287px - 120px);
+}
+
+.follow-button {
+    width: 64px;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(0, 149, 246);
+    background-color: white;
+}
+
+.follow-button:hover {
+    color: white;
+    background-color: rgba(0, 149, 246, 0.7);
+}
+
+.follow-button-activated {
+    color: white;
+    background-color: rgba(0, 149, 246, 0.7);
+}
+
+.dialog-box-background {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
+}
+
+.display-none {
+    display: none;
+}
+
+.dialog-box {
+    padding: 16px;
+    width: calc(470px - 32px);
+    line-height: 20px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: calc(50vh - 44px);
+    left: calc(50% - 235px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.jc-space-between {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+
+.post-form {
+    width: calc(470px - 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-post {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    border: unset;
 }

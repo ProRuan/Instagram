@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./style/ruan-media.css">
     <link rel="stylesheet" href="./style/navigation.css">
     <link rel="stylesheet" href="./fonts/font-face.css">
@@ -21,24 +20,11 @@
         <div id="dialog-box" class="dialog-box" onclick="closeDialogIf(id)">
             <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
             <div id="dialog-box-button-bar" class="jc-space-between">
-                <button id="yes-button" class="post-button" onclick="confirmAction()">Ja</button>
-                <button id="no-button" class="post-button" onclick="closeDialog('dialog-box-background')">Nein</button>
+                <button id="accept-button" class="post-button post-delete-button" onclick="confirmAction()">Ja</button>
+                <button id="reject-button" class="post-button post-delete-button" onclick="closeDialog('dialog-box-background')">Nein</button>
             </div>
         </div>
     </div>
-
-    <header id="header" class="navigation">
-        <div class="contact-container">
-            <div class="logo-box ruan"></div>
-            <div>
-                <h3 id="author-header">ruan</h3>
-                <span id="sub-text-header" class="sub-text">Tulln an der Donau</span>
-            </div>
-        </div>
-        <div>
-            <span id="counter-of-my-posts" class="counter-of-my-posts"></span>
-        </div>
-    </header>
 
     <main>
         <nav id="side-menu" class="side-menu">
@@ -69,9 +55,22 @@
         </section>
     </main>
 
+    <header id="header" class="navigation">
+        <div class="contact-container">
+            <div class="logo-box ruan"></div>
+            <div>
+                <h3 id="author-header">ruan</h3>
+                <span id="sub-text-header" class="sub-text">Tulln an der Donau</span>
+            </div>
+        </div>
+        <div>
+            <span id="counter-of-my-posts" class="counter-of-my-posts"></span>
+        </div>
+    </header>
+
     <footer id="footer" class="navigation">
-        <button class="footer-button" onclick="goToTop()">H</button>
-        <button class="footer-button" onclick="openDialogBox(getNextIndex(), 'post')">+</button>
+        <button class="post-button footer-button" onclick="goToTop()">H</button>
+        <button class="post-button footer-button" onclick="openDialogBox(getNextIndex(), 'post')">+</button>
     </footer>
 </body>
 
