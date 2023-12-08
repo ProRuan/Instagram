@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
+    <title>Ruanmedia</title>
     <link rel="stylesheet" href="./style/ruan-media.css">
     <link rel="stylesheet" href="./style/navigation.css">
     <link rel="stylesheet" href="./fonts/font-face.css">
@@ -18,11 +18,7 @@
 <body id="body" onload="showPosts()">
     <div id="dialog-box-background" class="dialog-box-background display-none" onclick="closeDialogIf(id)">
         <div id="dialog-box" class="dialog-box" onclick="closeDialogIf(id)">
-            <span id="dialog-box-text">Wollen Sie den letzen Kommentar wirklich löschen?</span>
-            <div id="dialog-box-button-bar" class="jc-space-between">
-                <button id="accept-button" class="post-button post-delete-button" onclick="confirmAction()">Ja</button>
-                <button id="reject-button" class="post-button post-delete-button" onclick="closeDialog('dialog-box-background')">Nein</button>
-            </div>
+            <!-- content depends on the requested action -->
         </div>
     </div>
 
@@ -34,10 +30,9 @@
                 <a id="new-post" class="menu-link" onclick="openDialogBox(getNextIndex(), 'post')">Neuer Post</a>
             </div>
         </nav>
-
         <section id="ruan-media" class="ruan-media">
             <div id="post-cascade" class="post-cascade">
-
+                <!-- contains the posts -->
             </div>
             <aside class="contacts">
                 <div class="my-contact contact-container">
@@ -49,7 +44,7 @@
                 </div>
                 <div class="recommended-contacts">Vorgeschlagene Kontakte</div>
                 <div id="recommended-contacts-container">
-
+                    <!-- contains the recommended contacts -->
                 </div>
             </aside>
         </section>
@@ -64,7 +59,9 @@
             </div>
         </div>
         <div>
-            <span id="counter-of-my-posts" class="counter-of-my-posts"></span>
+            <span id="counter-of-my-posts" class="counter-of-my-posts">
+                <!-- Meine Posts: x -->
+            </span>
         </div>
     </header>
 

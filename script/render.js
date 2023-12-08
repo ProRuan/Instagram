@@ -1,5 +1,4 @@
 // Variables Of Rendering
-let sum = 0;    // contains the sum of my own posts
 let posts = [
     {
         'logo': 'wheat',    // logo of author
@@ -69,6 +68,7 @@ function showPosts() {    // shows all posts
     postCascade.innerHTML = '';    // empties the postCascade
     fillPostCascade(postCascade);
     showRecommendedContacts();
+    showNumberOfMyPosts();
 }
 
 
@@ -78,7 +78,6 @@ function fillPostCascade(postCascade) {    // fills the postCascade
         writeAddedComments(i);
         setLikeButton(i);
         setEmptyAndDeleteButton(i);
-        countMyPosts(i);
     }
 }
 
@@ -267,13 +266,16 @@ function load() {    // loads the posts from the local storage
 
 function showNumberOfMyPosts() {    // shows the number of my posts
     let counter = document.getElementById('counter-of-my-posts');    // contains the element 'counter-of-my-post'
-    let sum = countMyPosts();    // contains the sum of my posts
-    counter.innerHTML = `<b>Meine Posts: ${sum}</b>`;    // writes the number of my posts
+    counter.innerHTML = `<b>Meine Posts: ${countMyPosts()}</b>`;    // writes the number of my posts
 }
 
 
-function countMyPosts(i) {    // counts my posts
-    if (posts[i]['author'] == 'ruan') {    // if the post i's author is 'ruan' ...
-        sum++;    // increase sum
+function countMyPosts() {    // counts my posts
+    let sum = 0;    // contains the sum of my posts
+    for (let i = 0; i < posts.length; i++) {    // as long as there are posts ...
+        if (posts[i]['author'] == 'ruan') {    // if the post i's author is 'ruan' ...
+            sum++;    // increase sum
+        }
     }
+    return sum;
 }
