@@ -142,3 +142,8 @@ function deleteLastCommentAndSetButtons(lastIndex, commentCollector, i) {    // 
         setEmptyAndDeleteButton(i)    // and set the 'empty-button' and the 'delete-button'
     }
 }
+
+
+function goToTop() {    // goes to the recent post
+    location.href = '#body';
+}

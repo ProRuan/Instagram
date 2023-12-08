@@ -1,6 +1,7 @@
 // Variables Of Dialog Box
 let deliveredIndex = 0;    // contains the delivered index of the element i
 let requestedAction = 'delete';    // contains the requested actions of the triggering button
+let levelCounter = 0;    // used for the function closeDialogIf()
 
 
 // Functions Of Dialog Box
@@ -87,4 +88,56 @@ function executeRequestedAction() {    // executes the requested action
 
 function closeDialog() {    // close the dialog box
     addDisplayNone('dialog-box-background');
+}
+
+
+function getNextIndex() {    // provides the index of the next post
+    return posts.length;
+}
+
+
+function addPost() {    // adds a new post
+    let input = document.getElementById('input-post').value;    // contains the value of 'input-post'
+    setNewPost(deliveredIndex, input);
+    saveAndShowPosts();
+}
+
+
+function setNewPost(deliveredIndex, input) {    // sets a new post
+    posts[deliveredIndex] = {
+        'logo': 'ruan',
+        'author': 'ruan',
+        'sub': 'Tulln an der Donau',
+        'img': './img/wheat.jpg',
+        'alt': 'wheat',
+        'likes': 0,
+        'like-state': false,
+        'comments': [input]
+    };    // uses deliveredIndex and input
+}
+
+
+function closeDialogIf(id) {    // closes the 'dialog-box', if levelCounter == 0
+    setLevelCounterIf(id);
+    decreaseLevelCounter();
+    levelCounterLessThanOne();
+}
+
+
+function setLevelCounterIf(id) {    // sets the levelCounter
+    if (id == 'dialog-box') {    // if id == 'dialog-box' ...
+        levelCounter = 3;    // levelCounter = 3
+    }
+}
+
+
+function decreaseLevelCounter() {    // decreases the levelCounter
+    return (levelCounter > 0) ? levelCounter-- : levelCounter = 0;    // sets levelCounter = 0, if levelCounter == 0
+}
+
+
+function levelCounterLessThanOne() {    // closes the 'dialog-box'
+    if (levelCounter < 1) {    // if levelCounter == 0 ...
+        closeDialog();    // close 'dialog-box'
+    }
 }

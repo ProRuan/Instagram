@@ -1,4 +1,5 @@
 // Variables Of Rendering
+let sum = 0;    // contains the sum of my own posts
 let posts = [
     {
         'logo': 'wheat',    // logo of author
@@ -63,9 +64,11 @@ load();    // loads the JSON array 'posts' from the local storage
 
 
 function showPosts() {    // shows all posts
+    let sum = 0;    // sets the sum (of my own posts) to 0
     let postCascade = document.getElementById('post-cascade');    // contains the id of the element 'post-cascade'
     postCascade.innerHTML = '';    // empties the postCascade
     fillPostCascade(postCascade);
+    showRecommendedContacts();
 }
 
 
@@ -75,12 +78,8 @@ function fillPostCascade(postCascade) {    // fills the postCascade
         writeAddedComments(i);
         setLikeButton(i);
         setEmptyAndDeleteButton(i);
+        countMyPosts(i);
     }
-
-    // Bitte bearbeiten!!!!!!!!!!!!!!!!!!!!
-    showRecommendedContacs();
-    setFollowButton();
-    showNumberOfMyPosts();
 }
 
 
@@ -262,5 +261,19 @@ function load() {    // loads the posts from the local storage
     let postsAsText = localStorage.getItem('posts');    // loads 'posts' from the local storage
     if (postsAsText) {
         posts = JSON.parse(postsAsText);    // parses the String to the JSON array 'posts'
+    }
+}
+
+
+function showNumberOfMyPosts() {    // shows the number of my posts
+    let counter = document.getElementById('counter-of-my-posts');    // contains the element 'counter-of-my-post'
+    let sum = countMyPosts();    // contains the sum of my posts
+    counter.innerHTML = `<b>Meine Posts: ${sum}</b>`;    // writes the number of my posts
+}
+
+
+function countMyPosts(i) {    // counts my posts
+    if (posts[i]['author'] == 'ruan') {    // if the post i's author is 'ruan' ...
+        sum++;    // increase sum
     }
 }
