@@ -1,0 +1,23 @@
+@media (max-width: 1280px) {
+    .contacts {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .navigation {
+        display: flex;
+    }
+
+    /* notwendig? */
+    .side-menu {
+        display: none;
+    }
+
+    .ruan-media {
+        padding-top: 0;
+        width: 100%;
+        top: 60px;
+        left: 0;
+    }
+}

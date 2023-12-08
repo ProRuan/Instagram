@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/ruan-media.css">
+    <link rel="stylesheet" href="./style/navigation.css">
     <link rel="stylesheet" href="./fonts/font-face.css">
+    <link rel="stylesheet" href="./media-query/media-query.css">
     <script src="./script/render.js"></script>
     <script src="./script/button.js"></script>
     <script src="./script/dialog-box.js"></script>
@@ -24,7 +27,7 @@
         </div>
     </div>
 
-    <header id="header" class="header">
+    <header id="header" class="navigation">
         <div class="contact-container">
             <div class="logo-box ruan"></div>
             <div>
@@ -37,7 +40,7 @@
         </div>
     </header>
 
-    <main id="main">
+    <main>
         <nav id="side-menu" class="side-menu">
             <span id="ruan-media-menu" class="ruan-media-menu">Ruanmedia</span>
             <div id="menu-link-group" class="menu-link-group">
@@ -66,7 +69,7 @@
         </section>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer id="footer" class="navigation">
         <button class="footer-button" onclick="goToTop()">H</button>
         <button class="footer-button" onclick="openDialogBox(getNextIndex(), 'post')">+</button>
     </footer>

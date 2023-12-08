@@ -73,7 +73,7 @@ function showPosts() {    // shows all posts
 
 
 function fillPostCascade(postCascade) {    // fills the postCascade
-    for (let i = 0; i < posts.length; i++) {
+    for (let i = posts.length - 1; i > -1; i--) {
         addPostContainer(postCascade, i);
         writeAddedComments(i);
         setLikeButton(i);
@@ -163,7 +163,7 @@ function writeInputComment(i) {    // provides the HTML code for the 'input-comm
 
 
 function getLogo(i) {    // provides the logo of post i
-    return posts[i]['logo'];
+    return posts[i]['logo'];    // return a logo
 }
 
 
