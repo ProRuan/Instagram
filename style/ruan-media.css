@@ -185,15 +185,11 @@ h3 {
 }
 
 .post-like-button:hover {
-    background-color: rgba(255, 0, 0, 0.2);
-}
-
-.post-like-button:focus {
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 .post-like-button-activated {
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 .delete-and-empty-button {
